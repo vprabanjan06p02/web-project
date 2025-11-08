@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Portal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+    body { background-color: #f1ae13; }
+    header {
+      background: #333; color: #fff; padding: 15px 0;
+    }
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 90%; margin: auto;
+    }
+    .navbar .logo { font-size: 24px; font-weight: bold; }
+    .navbar ul {
+      list-style: none; display: flex; gap: 20px;
+    }
+    .navbar a {
+      color: white; text-decoration: none; font-weight: bold;
+    }
+    .navbar a:hover { text-decoration: underline; }
+
+    section { padding: 40px 20px; }
+    h2 { margin-bottom: 15px; color: #333; }
+
+    /* Forms */
+    form {
+      max-width: 400px; margin: 20px auto; background: white;
+      padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%; padding: 10px; margin-bottom: 10px;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    button {
+      width: 100%; background: #333; color: #fff;
+      border: none; padding: 10px; border-radius: 5px; cursor: pointer;
+    }
+    button:hover { background: #555; }
+
+    .product-list {
+      display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+    }
+    .product {
+      background: white; padding: 15px; border-radius: 8px; width: 200px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1); text-align: center;
+    }
+    .product img { width: 100%; border-radius: 5px; }
+    .extras ul { list-style: none; padding-left: 0; }
+    .extras li {
+      margin: 8px 0; background: white; padding: 10px;
+      border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Menu -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">UNIVERSAL SHOP</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Welcome to universal shop</h2>
+    <p>Your one-stop destination for shopping online!</p>
+  </section>
+
+  <!-- Product Section -->
+  <section id="products">
+    <h2>Our Products</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="download.jpeg" alt="Product 1">
+        <h3>Smartphone</h3>
+        <p>$299</p>
+        <button>Add to Cart</button>
+        <button>Add to Wishlist</button>
+      </div>
+      <div class="product">
+        <img src="images (1).jpeg" alt="Product 2">
+        <h3>Headphones</h3>
+        <p>$49</p>
+        <button>Add to Cart</button>
+        <button>Add to Wishlist</button>
+      </div>
+      <div class="product">
+        <img src="images (2).jpeg" alt="Product 3">
+        <h3>Laptop</h3>
+        <p>$899</p>
+        <button>Add to Cart</button>
+        <button>Add to Wishlist</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Section -->
+  <section id="register">
+    <h2>User Registration</h2>
+    <form onsubmit="return validateRegisterForm()">
+      <input type="text" id="r_name" placeholder="Full Name">
+      <input type="email" id="r_email" placeholder="Email">
+      <input type="password" id="r_password" placeholder="Password">
+      <input type="password" id="r_confirm" placeholder="Confirm Password">
+      <button type="submit">Register</button>
+    </form>
+  </section>
+
+  <!-- Login Section -->
+  <section id="login">
+    <h2>User Login</h2>
+    <form onsubmit="return validateLoginForm()">
+      <input type="email" id="l_email" placeholder="Email">
+      <input type="password" id="l_password" placeholder="Password">
+      <button type="submit">Login</button>
+    </form>
+  </section>
+
+  <!-- Extra Sections -->
+  <section class="extras" id="extras">
+    <h2>Customer Options</h2>
+    <ul>
+      <li>My Orders</li>
+      <li>Wishlist</li>
+      <li>Comments & Reviews</li>
+      <li>Customer Care</li>
+      <li>Report a Problem</li>
+    </ul>
+  </section>
+
+  <!-- About Us -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>E-Shop is an online platform offering the best quality products at affordable prices with quick delivery and secure payment options.</p>
+  </section>
+
+  <!-- Contact Us -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: support@eshop.com</p>
+    <p>Phone: +1 234 567 890</p>
+  </section>
+
+  <script>
+    function validateRegisterForm() {
+      const name = document.getElementById("r_name").value.trim();
+      const email = document.getElementById("r_email").value.trim();
+      const password = document.getElementById("r_password").value;
+      const confirm = document.getElementById("r_confirm").value;
+
+      if (!name || !email || !password || !confirm) {
+        alert("All fields are required!");
+        return false;
+      }
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert("Invalid email format!");
+        return false;
+      }
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+      if (password !== confirm) {
+        alert("Passwords do not match!");
+        return false;
+      }
+      alert("Registration Successful!");
+      return true;
+    }
+
+    function validateLoginForm() {
+      const email = document.getElementById("l_email").value.trim();
+      const password = document.getElementById("l_password").value;
+
+      if (!email || !password) {
+        alert("Email and Password are required!");
+        return false;
+      }
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert("Invalid email format!");
+        return false;
+      }
+      alert("Login Successful!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
